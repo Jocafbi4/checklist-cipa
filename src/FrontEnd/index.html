@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Inspeção de Fretado - CIPA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <img src="../Images/CIPA.png" alt="Logo CIPA" class="logo-cipa">
+
+        <h2>Checklist - Caminhão e Vans (CIPA)</h2>
+
+        <img src="../Images/DHL.png" alt="Logo da DHL" class="logo-dhl">
+    </div>
+
+    <form id="formInspecao">
+
+        <div class="campo">
+            <label>Nome do Auditor</label>
+            <input type="text" id="auditor" name="auditor" required>
+        </div>
+
+        <div class="campo">
+            <label>Nome do Motorista</label>
+            <input type="text" id="motorista" name="motorista" required>
+        </div>
+
+        <div class="campo">
+            <label>Data</label>
+            <input type="date" name="data" required>
+        </div>
+
+        <hr>
+
+
+        <div class="campo">
+            <label>Tipo de Veículo</label>
+            <select id="tipo" name="tipo_veiculo" required>
+            <option value="">Selecione</option>
+            <option value="Caminhão">Caminhão</option>
+            <option value="Van">Van</option>
+        </select>
+        </div>
+
+        <hr>
+
+
+        <!-- Perguntas -->
+        <div class="question">
+            <label>1️⃣ A CNH do condutor é compatível com a categoria do veículo e está válida?</label>
+            <input type="radio" name="q1" value="Conforme" required> Conforme
+            <input type="radio" name="q1" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q1" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <div class="question">
+            <label>2️⃣ Os pneus apresentam sulco adequado e não possuem avarias visíveis?</label>
+            <input type="radio" name="q2" value="Conforme" required> Conforme
+            <input type="radio" name="q2" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q2" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <div class="question">
+            <label>3️⃣ Não foi observado uso de celular durante a condução?</label>
+            <input type="radio" name="q3" value="Conforme" required> Conforme
+            <input type="radio" name="q3" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q3" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <div class="question">
+            <label>4️⃣ A carga está devidamente acondicionada e fixada, sem risco de deslocamento?</label>
+            <input type="radio" name="q4" value="Conforme" required> Conforme
+            <input type="radio" name="q4" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q4" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <div class="question">
+            <label>5️⃣ O veículo apresenta sistema de iluminação e sinalização em pleno funcionamento?</label>
+            <input type="radio" name="q5" value="Conforme" required> Conforme
+            <input type="radio" name="q5" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q5" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <div class="question">
+            <label>6️⃣ O veículo possui equipamentos obrigatórios em condições adequadas (triângulo, extintor quando exigido, estepe)?</label>
+            <input type="radio" name="q6" value="Conforme" required> Conforme
+            <input type="radio" name="q6" value="Não Conforme"> Não Conforme
+            <input type="radio" name="q6" value="Não se Aplica"> Não se Aplica
+        </div>
+
+        <hr>
+
+        <label for="observacao" style="grid-column:1/4;">
+            Observações: (Obrigatório se houver Não Conforme)
+        </label>
+
+        <textarea id="observacao" name="observacao"></textarea>
+
+        <br><br>
+        <button type="submit">Enviar Inspeção</button>
+
+        <div id="mensagemSucesso" style="display:none;">
+            <h3>Inspeção enviada com sucesso!</h3>
+            <p>Número da Inspeção: <strong id="numeroInspecao"></strong></p>
+        </div>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

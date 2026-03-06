@@ -1,0 +1,149 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #A5D6A7;
+    padding:30px;
+}
+
+.container{
+    background:#FFFFFF;
+    padding:30px;
+    border-radius:12px;
+    max-width:850px;
+    margin:auto;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    border-top:8px solid #2E7D32;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.header h2{
+    flex:1;
+    text-align:center;
+    color:#2E7D32;
+}
+
+.logo-dhl{
+    height:45px;
+}
+
+.logo-cipa{
+    height:85px;
+}
+
+
+/* GRID FORM */
+
+form{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+/* CAMPOS */
+
+.campo{
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+    margin-bottom:5px;
+    font-weight:bold;
+    font-size:14px;
+    color:#333;
+}
+
+input[type="text"],
+input[type="date"],
+select{
+    padding:5px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+    width:100%;
+    transition:0.2s;
+}
+
+input:focus,
+select:focus{
+    border-color:#2E7D32;
+    outline:none;
+    box-shadow:0 0 4px rgba(46,125,50,0.3);
+}
+
+/* LINHA */
+
+hr{
+    grid-column:1/4;
+    margin:10px 0;
+}
+
+/* PERGUNTAS */
+
+.question{
+    grid-column:1/4;
+    background:#F7F7F7;
+    padding:15px;
+    border-radius:8px;
+    border-left:5px solid #FFCC00;
+}
+
+.question label{
+    display:block;
+    margin-bottom:10px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.question input[type="radio"]{
+    margin-right:5px;
+    transform:scale(1.1);
+}
+
+/* TEXTAREA */
+
+textarea{
+    grid-column:1/4;
+    width:100%;
+    height:90px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:10px;
+}
+
+/* BOTÃO */
+
+button{
+    grid-column:1/4;
+    width:200px;
+    padding:12px;
+    background:#D40511;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+button:hover{
+    background:#FFCC00;
+    color:#333;
+}
+
+/* MENSAGEM */
+
+#mensagemSucesso{
+    grid-column:1/4;
+    background:#E8F5E9;
+    padding:15px;
+    border-radius:6px;
+    border-left:5px solid #2E7D32;
+}
