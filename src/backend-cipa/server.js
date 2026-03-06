@@ -1,21 +1,30 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
+const path = require("path");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// 🔹 PRIMEIRO cria o pool
-const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "cipa_inspecao",
-    password: "1234",
-    port: 5432,
+/* SERVIR FRONTEND */
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// 🔹 DEPOIS usa o pool
+/* CONEXÃO BANCO (Render usa DATABASE_URL) */
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+});
+
+/* ROTA INSPEÇÕES */
+
 app.post("/inspecoes", async (req, res) => {
     try {
         const {
@@ -32,11 +41,10 @@ app.post("/inspecoes", async (req, res) => {
 
         const resultado = await pool.query(
             `INSERT INTO inspecoes
-             (data_inspecao, auditor_nome, motorista_nome, tipo_veiculo,
-              pergunta1, pergunta2, pergunta3,
-              pergunta4, pergunta5, pergunta6)
-             VALUES (CURRENT_DATE, $1,$2,$3,$4,$5,$6,$7,$8,$9)
-                 RETURNING id`,
+            (data_inspecao, auditor_nome, motorista_nome, tipo_veiculo,
+            pergunta1, pergunta2, pergunta3, pergunta4, pergunta5, pergunta6)
+            VALUES (CURRENT_DATE,$1,$2,$3,$4,$5,$6,$7,$8,$9)
+            RETURNING id`,
             [
                 auditor_nome,
                 motorista_nome,
@@ -57,8 +65,8 @@ app.post("/inspecoes", async (req, res) => {
 
         await pool.query(
             `UPDATE inspecoes
-             SET numero_inspecao = $1
-             WHERE id = $2`,
+            SET numero_inspecao = $1
+            WHERE id = $2`,
             [numeroFormatado, idGerado]
         );
 
@@ -75,6 +83,10 @@ app.post("/inspecoes", async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log("Servidor rodando em http://localhost:3000");
+/* PORTA DO RENDER */
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Servidor rodando na porta", PORT);
 });
